@@ -128,28 +128,30 @@ weather_df %>%
     y = "Maximum daily temp (C)",
     caption = "data from rnoaa package with three stations"
   ) +
-  scale_x_continuous(
-    breaks = c(-15, 0, 15),
-    labels = c("-15 C", "0", "15")
-  ) +
-  scale_y_continuous(
-    trans = "sqrt",
-    position = "right"
-  ) +
-  scale_color_hue(
-    name = "Location",
-    h = c(100, 300)
-  ) +
   scale_color_viridis_d()
 ```
 
-    ## Scale for 'colour' is already present. Adding another scale for 'colour',
-    ## which will replace the existing scale.
-
-    ## Warning in self$trans$transform(x): NaNs produced
-
-    ## Warning: Transformation introduced infinite values in continuous y-axis
-
-    ## Warning: Removed 90 rows containing missing values (geom_point).
+    ## Warning: Removed 15 rows containing missing values (geom_point).
 
 <img src="viz_part2_files/figure-gfm/unnamed-chunk-5-1.png" width="90%" />
+
+## Themes
+
+``` r
+weather_df %>%
+  ggplot(aes(x = tmin, y = tmax, color = name)) +
+  geom_point(alpha = .3) +
+  labs(
+    title = "Temperature at three stations",
+    x = "Minimum daily temp (C)",
+    y = "Maximum daily temp (C)",
+    caption = "data from rnoaa package with three stations"
+  ) +
+  scale_color_viridis_d() +
+  theme_minimal() +
+  theme(legend.position = "bottom")
+```
+
+    ## Warning: Removed 15 rows containing missing values (geom_point).
+
+<img src="viz_part2_files/figure-gfm/unnamed-chunk-6-1.png" width="90%" />
